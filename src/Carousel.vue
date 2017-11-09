@@ -405,7 +405,7 @@ export default {
 
 			/* eslint no-unused-expressions: 0 */
 			mouseDrag && bindEvent(itemsWrap, EV_MOUSE_DOWN, startCB);
-			hasTouch && bindEvent(itemsWrap, EV_TOUCH_START, startCB);
+			mouseDrag && hasTouch && bindEvent(itemsWrap, EV_TOUCH_START, startCB);
 		},
 		unbindDrag() {
 			const me = this;

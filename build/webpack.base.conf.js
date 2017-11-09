@@ -26,7 +26,7 @@ module.exports = {
 		'vue': 'Vue'
 	},
 	module: {
-		preLoaders: [
+		/*preLoaders: [
 			{
 				test: /\.js$/,
 				loader: 'eslint',
@@ -43,7 +43,7 @@ module.exports = {
 					projectSrc
 				]
 			}
-		],
+		],*/
 		loaders: [
 			{
 				test: /\.vue$/,
