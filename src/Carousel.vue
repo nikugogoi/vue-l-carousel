@@ -222,6 +222,11 @@ export default {
 				return [];
 			},
 		},
+		// toggle swiping in touch devices
+		touchSlide: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	data() {
 		return {
@@ -283,6 +288,7 @@ export default {
 		watch('mouseDrag', checkDrag);
 		watch('auto', me.checkAuto);
 		watch('activeIndex', emitChangedIndex);
+		watch('touchSlide', checkDrag);
 
 		listen(EV_PREV, me.prev);
 		listen(EV_NEXT, me.next);
@@ -384,6 +390,7 @@ export default {
 				mouseDrag = me.mouseDrag,
 				itemsWrap = me.itemsWrap,
 				startCB = me.startCB,
+				touchSlide = me.touchSlide,
 
 				EV_MOVE = [],
 				EV_END = [];
@@ -395,7 +402,7 @@ export default {
 				EV_END.push(EV_MOUSE_UP);
 			}
 
-			if (hasTouch) {
+			if (hasTouch && touchSlide) {
 				EV_MOVE.push(EV_TOUCH_MOVE);
 				EV_END.push(EV_TOUCH_END);
 			}
@@ -405,7 +412,7 @@ export default {
 
 			/* eslint no-unused-expressions: 0 */
 			mouseDrag && bindEvent(itemsWrap, EV_MOUSE_DOWN, startCB);
-			hasTouch && bindEvent(itemsWrap, EV_TOUCH_START, startCB);
+			touchSlide && hasTouch && bindEvent(itemsWrap, EV_TOUCH_START, startCB);
 		},
 		unbindDrag() {
 			const me = this;

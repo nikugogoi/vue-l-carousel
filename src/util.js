@@ -31,7 +31,7 @@ function isStr(o) {
 function qsa(element, selector) {
 	// From Zepto
 	/* eslint no-nested-ternary: 0 no-cond-assign: 0  */
-	let found;
+	// let found;
 	const maybeID = selector[0] == '#',
 		maybeClass = !maybeID && selector[0] == '.',
 		// Ensure that a 1 char tag name still gets checked
@@ -39,7 +39,7 @@ function qsa(element, selector) {
 		isSimple = simpleSelectorRE.test(nameOnly);
 	// Safari DocumentFragment doesn't have getElementById
 	return (element.getElementById && isSimple && maybeID) ?
-		((found = element.getElementById(nameOnly)) ? [found] : []) :
+		(element.getElementById(nameOnly) ? [element.getElementById(nameOnly)] : []) :
 		(element.nodeType !== 1 && element.nodeType !== 9 && element.nodeType !== 11) ? [] :
 			slice.call(
 				// DocumentFragment doesn't have getElementsByClassName/TagName
